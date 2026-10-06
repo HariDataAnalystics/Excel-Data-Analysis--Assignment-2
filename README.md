@@ -1,287 +1,122 @@
-# Excel Data Cleaning and Transformation
+# 📊 Excel Data Cleaning and Transformation – Product Dataset
 
 ## 📌 Project Overview
 
-This project focuses on **data cleaning and preparation using Microsoft Excel**. As part of my Data Analytics learning journey, I worked with a Product Dataset containing product details such as Product ID, Product Name, Brand Name, Quantity, Category, and Price.
+This project focuses on **data cleaning and preparation using Microsoft Excel**. As an aspiring Data Analyst, I worked with a Product Dataset to identify and resolve common data quality issues such as missing values, inconsistent text, duplicate records, poorly structured data, and formatting problems.
 
-The objective of this assignment was to identify and handle common data quality issues such as **missing values, inconsistent text formats, spelling errors, duplicate records, and unstructured data** before analysis.
-
-This project demonstrates my practical understanding of **Excel data cleaning, transformation, formatting, and conditional formatting techniques**.
+The goal of this project was to transform the raw dataset into a **clean, standardized, and analysis-ready dataset** using Excel's data cleaning, transformation, and formatting features.
 
 ---
 
 ## 🎯 Objectives
 
 - Identify and handle missing values.
-- Standardize inconsistent text formats.
-- Correct category spelling errors.
-- Identify and remove duplicate records.
-- Split and restructure Product ID information.
-- Merge columns to create meaningful fields.
+- Correct inconsistent text formats and category errors.
+- Detect and remove duplicate records.
+- Split and restructure the Product ID column.
+- Merge product-related columns.
 - Apply appropriate number and date formatting.
 - Use conditional formatting to improve data readability.
-- Prepare a clean and analysis-ready dataset.
+- Prepare the dataset for further analysis.
 
 ---
 
-## 📊 Dataset Description
+## 📂 Dataset Description
 
-The dataset contains information about different products.
+The dataset contains information about different products with the following attributes:
 
 | Column | Description |
 |---|---|
-| Product ID | Contains product date information and country code |
+| Product ID | Unique identifier for each product |
 | Product Name | Name of the product |
 | Brand Name | Brand associated with the product |
-| Price | Price of the product |
 | Quantity | Available quantity |
 | Category | Product category |
+| Price | Price of the product |
 
 ---
 
-## 🧹 Data Cleaning & Transformation
+## 🛠️ Tools & Technologies
+
+- **Microsoft Excel**
+- Excel Formulas
+- Find & Replace
+- Remove Duplicates
+- Text Transformation
+- Data Formatting
+- Conditional Formatting
+- Data Cleaning Techniques
+
+---
+
+## 🔍 Tasks Performed
 
 ### 1. Handling Missing Values
 
-#### Price
-
-Missing values were identified in the **Price** column.
-
-For products with missing price information, the missing values were handled using **average price imputation**.
-
-**Excel Formula:**
-
-```excel
-=IF(D2="",AVERAGE($D$2:$D$35),D2)
-```
-
-This replaces a blank price with the average price while keeping existing prices unchanged.
-
-#### Category
-
-Missing categories were identified and handled using a suitable category-imputation strategy based on the available product information.
-
-The objective was to ensure that the dataset contains meaningful category values before analysis.
-
----
+- Checked the **Price** column for missing values.
+- Handled missing price values using an appropriate imputation strategy.
+- Checked the **Category** column for missing values.
+- Proposed an appropriate strategy to deal with missing categories based on available product information.
 
 ### 2. Correcting Inconsistent Data
 
-#### Product Name
+- Identified inconsistent text formats in the **Product Name** column.
+- Identified spelling errors and inconsistencies in the **Category** column.
+- Used **Find & Replace** to standardize product names.
+- Corrected category typos and standardized category values.
 
-The **Product Name** column contained inconsistent capitalization and formatting.
+### 3. Removing Duplicate Records
 
-The text was standardized using Excel functions such as:
+- Checked the dataset for duplicate rows.
+- Compared the complete row values to identify duplicates.
+- Removed duplicate records where applicable.
 
-```excel
-=PROPER(TRIM(CLEAN(B2)))
-```
+### 4. Splitting and Merging Data
 
-This helps to:
+- Split the **Product ID** into:
+  - Manufacturing Date
+  - Country Code
+- Removed unnecessary characters from the extracted data.
+- Merged **Brand Name** and **Product Name** into a new column named **Product Brand**.
 
-- Remove unnecessary spaces.
-- Remove non-printing characters.
-- Standardize capitalization.
+### 5. Number and Date Formatting
 
-#### Category
+- Formatted the **Price** column using currency formatting.
+- Formatted the **Manufacturing Date** using:
 
-Typographical errors were identified in the **Category** column.
+`DD-MM-YYYY`
 
-For example:
+This improved the consistency and readability of the dataset.
 
-```text
-Electroni → Electronics
-```
+### 6. Conditional Formatting
 
-The incorrect category values were corrected using **Find & Replace** / Excel text transformation.
+Applied conditional formatting to improve data visualization:
 
-Example formula used:
-
-```excel
-=IF(F2="","",SUBSTITUTE(F2,"Electroni","Electronics"))
-```
-
----
-
-## 🗑️ 3. Removing Duplicate Records
-
-The dataset was checked for duplicate rows based on the **complete row contents**.
-
-Excel's **Remove Duplicates** feature was used to identify and remove duplicate records where applicable.
-
-This helps ensure that each product record is represented only once in the cleaned dataset.
+- Used **Data Bars / Color Scales** for the **Price** column.
+- Created a custom conditional formatting rule to highlight products belonging to the **Electronics** category.
 
 ---
 
-## 🔄 4. Splitting and Merging Data
-
-### Splitting Product ID
-
-The Product ID follows a structure similar to:
-
-```text
-28-JAN-US
-```
-
-The Product ID was separated into:
-
-- **Manufacturing Date**
-- **Country Code**
-
-The country code was extracted using:
-
-```excel
-=RIGHT(A2,2)
-```
-
-The manufacturing date was extracted and converted into a proper Excel date format.
-
-Example:
-
-```excel
-=DATE(2026,MONTH(DATEVALUE("1-"&MID(A2,4,3))),VALUE(LEFT(A2,2)))
-```
-
-### Merging Brand Name and Product Name
-
-The **Brand Name** and **Product Name** fields were combined to create a new column:
-
-```text
-Product Brand
-```
-
-Example:
-
-```text
-Dell + Laptop → Dell Laptop
-```
-
-This creates a more descriptive field for analysis.
-
----
-
-## 💰 5. Number Formatting
-
-### Price
-
-The **Price** column was formatted using a **Currency format** to improve readability and clearly represent monetary values.
-
-Example:
-
-```text
-1000 → $1,000.00
-```
-
-### Manufacturing Date
-
-The Manufacturing Date column was formatted as:
-
-```text
-DD-MM-YYYY
-```
-
-Example:
-
-```text
-28-01-2026
-```
-
----
-
-## 🎨 6. Conditional Formatting
-
-### Price
-
-Conditional formatting was applied to the **Price** column using:
-
-- Data Bars
-- Color Scales
-
-This makes it easier to visually identify relatively high and low product prices.
-
-### Category
-
-A custom conditional formatting rule was created to highlight products belonging to:
-
-```text
-Electronics
-```
-
-This allows specific product categories to be identified quickly within the dataset.
-
----
-
-## 🛠️ Tools & Skills Used
-
-### Tools
-
-- Microsoft Excel
-- GitHub
-
-### Excel Skills
-
-- Data Cleaning
-- Missing Value Handling
-- Average Imputation
-- Find & Replace
-- Text Standardization
-- `IF()`
-- `AVERAGE()`
-- `PROPER()`
-- `TRIM()`
-- `CLEAN()`
-- `SUBSTITUTE()`
-- `RIGHT()`
-- `LEFT()`
-- `MID()`
-- `DATE()`
-- `DATEVALUE()`
-- Duplicate Removal
-- Data Formatting
-- Date Formatting
-- Currency Formatting
-- Conditional Formatting
-- Data Bars
-- Color Scales
-
----
-
-## 📁 Project Files
-
-```text
-Excel-Data-Cleaning-Transformation/
-│
-├── Dataset/
-│   └── Product Dataset.xlsx
-│
-├── Assignment/
-│   └── Assignment 2 - Data Cleaning and Transformation.pdf
-│
-└── README.md
-```
-
----
-
-## 🔄 Data Cleaning Workflow
+## 📈 Data Cleaning Workflow
 
 ```text
 Raw Product Dataset
         ↓
 Check Missing Values
         ↓
-Handle Missing Price / Category
+Handle Missing Data
         ↓
-Standardize Product Names
+Correct Text Inconsistencies
         ↓
-Correct Category Typos
+Fix Category Typos
         ↓
-Remove Duplicate Records
+Remove Duplicate Rows
         ↓
 Split Product ID
         ↓
 Merge Brand + Product Name
         ↓
-Format Price & Date
+Apply Number & Date Formatting
         ↓
 Apply Conditional Formatting
         ↓
@@ -290,46 +125,53 @@ Clean & Analysis-Ready Dataset
 
 ---
 
-## 📈 Key Learning Outcomes
+## 💡 Skills Demonstrated
 
-Through this project, I gained practical experience in:
+Through this project, I practiced the following Data Analytics skills:
 
-- Understanding the importance of data quality.
-- Cleaning real-world style datasets using Excel.
-- Handling missing and inconsistent data.
-- Transforming unstructured information into useful columns.
-- Using Excel formulas for data preprocessing.
-- Applying formatting techniques for better data readability.
-- Preparing datasets for further analysis and visualization.
-
----
-
-## 🚀 About My Data Analytics Journey
-
-I am a **Final-Year Biomedical Engineering student** currently developing my skills in **Data Analytics**.
-
-I am building my portfolio by completing practical projects using:
-
-```text
-Excel → SQL → Python → Power BI
-```
-
-This project is part of my learning journey toward becoming a **Data Analyst**.
+- Data Cleaning
+- Data Preprocessing
+- Missing Value Handling
+- Data Standardization
+- Duplicate Detection & Removal
+- Text Transformation
+- Data Formatting
+- Excel Formulas
+- Conditional Formatting
+- Data Quality Improvement
+- Dataset Preparation
 
 ---
 
-## 👤 Author
+## 📁 Project Files
+
+- `Raw Dataset` – Original Product Dataset
+- `Cleaned Dataset` – Data after cleaning and transformation
+- `Assignment 2 Excel` – Completed Excel assignment
+- `README.md` – Project documentation
+
+---
+
+## 🚀 Key Learning
+
+This project helped me understand that **clean and consistent data is essential before performing analysis**. I gained practical experience in using Microsoft Excel to transform raw data into a structured and analysis-ready format.
+
+It also strengthened my understanding of **data preprocessing, data quality, and Excel-based data analysis**, which are important skills for a Data Analyst.
+
+---
+
+## 👨‍💻 About Me
 
 **Hariharan A**
 
-Aspiring Data Analyst | Final-Year Biomedical Engineering Student
+🎓 Final-Year Biomedical Engineering Student  
+📊 Aspiring Data Analyst  
+💻 Currently developing skills in **Excel, SQL, Python, and Power BI**
 
-Skills: **Excel | SQL | Python | Power BI**
+I am building my Data Analytics portfolio by working on practical projects and continuously improving my technical and analytical skills.
 
 ---
 
-## ⭐ Project Status
+## 🔗 Portfolio
 
-**Completed ✅**
-
-More Data Analytics projects will be added to this portfolio as I continue learning and developing my skills.
+This project is part of my **Data Analytics Portfolio**, where I document my learning journey and practical projects in data analysis.
